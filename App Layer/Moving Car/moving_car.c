@@ -7,8 +7,8 @@
 #include "moving_car.h"
 
 static unsigned int current_count=0; //counter which increments everytime the ISR is called
-static uint8_t start = 0;
-static uint8_t stop  = 0;
+static uint8_t start = 0;//start flag
+static uint8_t stop  = 0;//stop flag
 /*************************************************************************************************************************************************************/
 /*Description: Setting timer 0 and timer 2 normal modes, enabling global interrupt and timer 2 interrupt and also initializing motor,leds and button pins    */
 /*@param void   																																			 */
@@ -55,7 +55,6 @@ err_state car_init(void)
 err_state move_car(car_dir direction)
 {
     unsigned int ovf;
-
     switch(direction)
     {
         //LONG SIDE 50% MAX SPEED for 3 seconds then stop	
@@ -116,10 +115,10 @@ err_state move_car(car_dir direction)
             TCNT2 = 0;//set the timer counter register value to 0
             current_count = 0;//reset the counter
             LED_array_off(0xFF,PORT_B);//turn off all leds
-               LED_on(2,PORT_B);//set stop led to on
+            LED_on(2,PORT_B);//set stop led to on
             MOTOR_off(ENB_PINS_MASK,PORT_A);//turn off motors' enable pins
             timer0_delay(500);//wait for 0.5 sec using timer 0		
-            
+            return SUCCESS;            
     }
     return FAIL;
 }
@@ -132,20 +131,16 @@ err_state car_cycle(void)
 {
     //all modules initializations
     car_init();
-    
-        while(start!=1);
-        timer0_delay(1000);
-        while(stop!=1)
-        {
-            move_car(FORWARD_LONG_SIDE);
-
-            move_car(ROTATE_RIGHT);
-
-            move_car(FORWARD_SHORT_SIDE);
-
-            move_car(ROTATE_RIGHT);
-        }
-    return FAIL;
+    while(start!=1);
+    timer0_delay(1000);
+    while(stop!=1)
+    {
+        move_car(FORWARD_LONG_SIDE);
+        move_car(ROTATE_RIGHT);
+        move_car(FORWARD_SHORT_SIDE);
+        move_car(ROTATE_RIGHT);
+    }
+return FAIL;
 }
 
 //ISR for timer 2 overflow which increments the current_count
