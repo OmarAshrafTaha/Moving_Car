@@ -55,7 +55,7 @@ err_state MOTOR_off(uint8_t u8_a_mask, uint8_t u8_a_portNumber)
 /*****************************************************************************************************************************************************************************/
 err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_speedPercentage,float f_a_tPeriod)
 {
-    double on_TIME,off_TIME = 0;
+    double d_l_onTime,d_l_offTime = 0;
     
     //error handling : the required output deviates depending on how close to the min and max values of the motor speed and also depending on the T-Period
     if(f_a_speedPercentage>50)//checks if the duty cycle is higher than 50%
@@ -68,14 +68,14 @@ err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_spe
         f_a_speedPercentage = f_a_speedPercentage-((50-f_a_speedPercentage)*d_g_err);//subtracts 4.2% of the difference between the required duty cycle and 50% duty cycle
     }
     
-    on_TIME = (double) (f_a_speedPercentage/100.0)*f_a_tPeriod;//sets the duty cycle 
-    off_TIME = f_a_tPeriod - on_TIME;//gets the off time
+    d_l_onTime = (double) (f_a_speedPercentage/100.0)*f_a_tPeriod;//sets the duty cycle 
+    d_l_offTime = f_a_tPeriod - d_l_onTime;//gets the off time
           
     MOTOR_on(u8_a_mask,u8_a_portNumber);//motors on
-    TIMER0_delay(on_TIME);//busy loop until the on time is met
+    TIMER0_delay(d_l_onTime);//busy loop until the on time is met
         
     MOTOR_off(u8_a_mask,u8_a_portNumber);//motors off	
-    TIMER0_delay(off_TIME);////busy loop until the off time is met
+    TIMER0_delay(d_l_offTime);////busy loop until the off time is met
         
     return SUCCESS;
 }
