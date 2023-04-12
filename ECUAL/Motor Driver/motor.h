@@ -32,13 +32,13 @@ err_state MOTOR_on(uint8_t mask, uint8_t portNumber);
 /************************************************************************/
 err_state MOTOR_off(uint8_t mask, uint8_t portNumber);
 
-/****************************************************************************************************************************************************************************/
-/*Description: Controls the motor speed depending on the given percentage of the maximum speed by setting the duty cycle to the required max_speed percentage               */
-/*@param mask				=>	mask for the pins 		                                                                                                                  	*/
-/*@param ledPort			=>  port number                                                                                                                                 */
-/*@param speedPercentage	=>	duty cycle 		                                                                                                                  		    */
-/*@param resolution_in_ms	=>  T-Period                                                                                                                                    */
-/****************************************************************************************************************************************************************************/
+/*****************************************************************************************************************************************************************************/
+/*Description: Controls the motor speed depending on the given percentage of the maximum speed by setting the duty cycle to the required max_speed percentage (Uses timer 0) */
+/*@param mask				=>	mask for the pins 		                                                                                                                  	 */
+/*@param ledPort			=>  port number                                                                                                                                  */
+/*@param speedPercentage	=>	duty cycle 		                                                                                                                  		     */
+/*@param resolution_in_ms	=>  T-Period                                                                                                                                     */
+/*****************************************************************************************************************************************************************************/
 err_state MOTOR_control(uint8_t mask, uint8_t portNumber,float speedPercentage,float resolution_in_ms);
 
 

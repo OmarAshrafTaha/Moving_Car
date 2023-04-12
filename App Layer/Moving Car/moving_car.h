@@ -36,22 +36,24 @@
 //Car States
 typedef enum car_dir
 {
-	FORWARD_LONG_SIDE,FORWARD_SHORT_SIDE,ROTATE_RIGHT
+    FORWARD_LONG_SIDE,FORWARD_SHORT_SIDE,ROTATE_RIGHT
 }car_dir;
 
 /*************************************************************************************************************************************************************/
-/*@Description: Setting timer 0 and timer 2 normal modes, enabling global interrupt and timer 2 interrupt and also initializing motor,leds and button pins   */
+/*Description: Setting timer 0 and timer 2 normal modes, enabling global interrupt and timer 2 interrupt and also initializing motor,leds and button pins    */
+/*@param void																																				 */
 /*************************************************************************************************************************************************************/
 err_state car_init(void);
 
 /***************************************************************************************************************************************************************************************************************************************/
-/*@Description: Moves the car according to the given direction by setting the motor direction pins, sets the speed of the car and keeps the car in the required state until the timer reaches the required time for the current state  */
+/*Description: Moves the car according to the given direction by setting the motor direction pins, sets the speed of the car and keeps the car in the required state until the timer reaches the required time for the current state   */
 /*@param value      =>  direction						   	                                                                                                                                                                           */
 /***************************************************************************************************************************************************************************************************************************************/
 err_state move_car(car_dir direction); //Checks the direction, speed and delay and moves the car accordingly
 
 /*************************************************************************************************************************************************************/
-/*@Description: Looping on the car states                                                                                                                    */
+/*Description: Looping on the car states                                                                                                                     */
+/*@param void																																				 */
 /*************************************************************************************************************************************************************/
 err_state car_cycle(void);
 

@@ -42,18 +42,19 @@
 /************************************************************************/
 
 /********************************************************************************************/
-/*@Description: Set timer 0 control register to normal mode by clearing bits COM00 & COM01. */
+/*Description: Set timer 0 control register to normal mode by clearing bits COM00 & COM01.  */
+/*@param void                                              						   	        */	
 /********************************************************************************************/
 err_state set_timer0_normal_mode(void);
 
 /****************************************************************************************/
-/*@Description: Setting the initial value for the timer 0 counter register              */
+/*Description: Setting the initial value for the timer 0 counter register               */
 /*@param value      =>  initial value to start timer 0 from						   	    */
 /****************************************************************************************/
 err_state set_timer0_intitial_value(uint8_t value);
 
 /************************************************************************/
-/*@Description: Sets the prescaler mode.                                */
+/*Description: Sets the prescaler mode.                                 */
 /*Choose a prescaler mode from this list => TIMER_OFF_                  */
 /*										 =>	NO_PRESCALE_			    */
 /*										 => PRESCALE_8_					*/
@@ -62,17 +63,18 @@ err_state set_timer0_intitial_value(uint8_t value);
 /*										 => PRESCALE_1024_				*/
 /*										 => PRESCALE_EXT_FALLING_		*/
 /*										 => PRESCALE_EXT_RISING_        */
+/*@param prescaler => prescaler mode                                    */	
 /************************************************************************/
 err_state set_timer0_prescaler_mode(unsigned int prescaler);
 
 /************************************************************************/
-/*@Description: Stays in a busy loop until the delay is met			    */
+/*Description: Stays in a busy loop until the delay is met			    */
 /*@param delay_time_in_ms      =>  delay time needed in ms				*/
 /************************************************************************/
 err_state timer0_delay(float delay_time_in_ms);
 
 /************************************************************************************************************************************************************************/
-/*@Description: Gets The timer initial value according to the delay needed, prescaler mode and CPU frequency, then sets the timer initial value accordingly.		    */
+/*Description: Gets The timer initial value according to the delay needed, prescaler mode and CPU frequency, then sets the timer initial value accordingly.		        */
 /*@param delay_time_in_ms      =>  delay time needed in ms																												*/
 /************************************************************************************************************************************************************************/
 unsigned int get_timer0_initial_value(float delay_time_in_ms);
@@ -82,22 +84,23 @@ unsigned int get_timer0_initial_value(float delay_time_in_ms);
 
 
 /************************************************************************/
-/* Timer 1 driver							                            */
+/* Timer 2 driver							                            */
 /************************************************************************/
 
 /********************************************************************************************/
-/*@Description: Set timer 0 control register to normal mode by clearing bits COM00 & COM01. */
+/*Description: Set timer 2 control register to normal mode by clearing bits COM00 & COM01.  */
+/*@param void                                              						   	        */	
 /********************************************************************************************/
 err_state set_timer2_normal_mode(void);
 
 /****************************************************************************************/
-/*@Description: Setting the initial value for the timer 0 counter register              */
+/*Description: Setting the initial value for the timer 2 counter register               */
 /*@param value      =>  initial value to start timer 0 from						   	    */
 /****************************************************************************************/
 err_state set_timer2_intitial_value(uint8_t value);
 
 /************************************************************************/
-/*@Description: Sets the prescaler mode.                                */
+/*Description: Sets the prescaler mode.                                 */
 /*Choose a prescaler mode from this list => TIMER_OFF_                  */
 /*										 =>	NO_PRESCALE_			    */
 /*										 => PRESCALE_8_					*/
@@ -106,17 +109,18 @@ err_state set_timer2_intitial_value(uint8_t value);
 /*										 => PRESCALE_1024_				*/
 /*										 => PRESCALE_EXT_FALLING_		*/
 /*										 => PRESCALE_EXT_RISING_        */
+/*@param prescaler => prescaler mode                                    */	
 /************************************************************************/
 err_state set_timer2_prescaler_mode(unsigned int prescaler);
 
 /************************************************************************/
-/*@Description: Stays in a busy loop until the delay is met			    */
+/*Description: Stays in a busy loop until the delay is met			    */
 /*@param delay_time_in_ms      =>  delay time needed in ms				*/
 /************************************************************************/
 err_state timer2_delay(float delay_time_in_ms);
 
 /************************************************************************************************************************************************************************/
-/*@Description: Gets The timer initial value according to the delay needed, prescaler mode and CPU frequency, then sets the timer initial value accordingly.		    */
+/*Description: Gets The timer initial value according to the delay needed, prescaler mode and CPU frequency, then sets the timer initial value accordingly.		        */
 /*@param delay_time_in_ms      =>  delay time needed in ms																												*/
 /************************************************************************************************************************************************************************/
 unsigned int get_timer2_initial_value(float delay_time_in_ms);

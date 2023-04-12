@@ -5,3 +5,4 @@
 /Proteus/*.pdsbak
 /Proteus/*.pdsprj.*
 .vs
+.vscode
