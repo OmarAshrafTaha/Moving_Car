@@ -8,8 +8,8 @@
 
 #ifndef MOTOR_H_
 #define MOTOR_H_
-#include "../../MCAL/DIO Driver/dio.h"
-#include "../../MCAL/Timers Driver/timers.h"
+#include "../../MCAL/dio/dio.h"
+#include "../../MCAL/timers/timers.h"
 
 /************************************************************************/
 /*Description: Initialize a motor pin as an output                      */

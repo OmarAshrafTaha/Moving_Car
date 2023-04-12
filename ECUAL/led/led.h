@@ -8,8 +8,8 @@
 
 #ifndef LED_H_
 #define LED_H_
-#include "../../MCAL/DIO Driver/dio.h"
-#include "../../MCAL/Timers Driver/timers.h"
+#include "../../MCAL/dio/dio.h"
+#include "../../MCAL/timers/timers.h"
 
 /************************************************************************/
 /*Description: Initialize a led as an output                            */

@@ -9,11 +9,11 @@
 #ifndef MOVING_CAR_H_
 #define MOVING_CAR_H_
 
-#include "../../ECUAL/Motor Driver/motor.h"
-#include "../../ECUAL/LED Driver/led.h"
-#include "../../ECUAL/Button Driver/button.h"
-#include "../../MCAL/Interrupts Driver/interrupts.h"
-#include "../../MCAL/Timers Driver/timers.h"
+#include "../../ECUAL/motor/motor.h"
+#include "../../ECUAL/led/led.h"
+#include "../../ECUAL/button/button.h"
+#include "../../MCAL/interrupts/interrupts.h"
+#include "../../MCAL/timers/timers.h"
 
 //PWM T-Period is 100 milliseconds
 #define resolution 100  
