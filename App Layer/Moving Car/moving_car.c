@@ -149,14 +149,14 @@ ISR(TIMER2_OVF)
     current_count++;
 }
 
-//ISR for external interrupt 0 on PD2 which alternates between which group of LEDs are ON or OFF
+//ISR for external interrupt 0 on PD2 which sets the start flag
 ISR(EXT_INT_0)
 {
     start = 1;
     stop = 0;
 }
 
-//ISR for external interrupt 1 on PD3 which acts as an emergency stop and keep motors off until start button is pushed again 
+//ISR for external interrupt 1 on PD3 sets the emergency stop flag and keep motors off until start button is pushed again 
 ISR(EXT_INT_1)
 {
     SREG |= (1<<7);//enabling the global interrupt to check if start is pushed again
