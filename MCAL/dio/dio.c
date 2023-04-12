@@ -171,7 +171,7 @@ err_state DIO_write(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_state e
 /*Description: Sets an array of pins as HIGH or LOW depending on the state passed          */
 /*@param u8_l_mask              pins mask                                                  */
 /*@param u8_l_portNumber        port number                                                */
-/*@param en_l_value	            mask desired state                                         */
+/*@param en_l_value             mask desired state                                         */
 /*******************************************************************************************/
 err_state DIO_array_write(uint8_t u8_l_mask, uint8_t u8_l_portNumber, pin_state en_l_value)   
 {

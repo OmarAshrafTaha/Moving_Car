@@ -158,7 +158,7 @@ unsigned int TIMER0_getInitialValue(float f_a_delayInMillis)
 
 /********************************************************************************************/
 /*Description: Set timer 2 control register to normal mode by clearing bits COM00 & COM01.  */
-/*@param void                                              						   	        */	
+/*@param void                                                                               */	
 /********************************************************************************************/
 err_state TIMER2_normalMode(void)
 {
