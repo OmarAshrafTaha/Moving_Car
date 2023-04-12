@@ -5,14 +5,9 @@
  * Author : Omar Taha
  */ 
 
-#include <avr/io.h>
-
+#include "App Layer/Moving Car/moving_car.h"
 
 int main(void)
 {
-    /* Replace with your application code */
-    while (1) 
-    {
-    }
+	car_cycle();
 }
-
