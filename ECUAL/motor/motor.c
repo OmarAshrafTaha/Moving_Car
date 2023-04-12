@@ -8,74 +8,74 @@
 #include "motor.h"
 
 /***************************************************************************/
-/*This error is calculated for the 100 milliseconds resolution(T-Period)!! */
+/*This error is calculated for the 100 milliseconds T-Period !!            */
 /***************************************************************************/
-double err =0.042;//error in the delay times due to context switching.The error is 4.2% of the difference between the required On/Off Time and 50% of the resolution(T-Period).
+double d_g_err =0.042;//error in the delay times due to context switching.The error is 4.2% of the difference between the required On/Off Time and 50% of the T-Period.
 
 
 /************************************************************************/
 /*Description: Initialize a motor pin as an output                      */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_pinNumber pin number                                      */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_init(uint8_t pinNumber, uint8_t portNumber)
+err_state MOTOR_init(uint8_t u8_a_pinNumber, uint8_t u8_a_portNumber)
 {
-    DIO_init(pinNumber,portNumber,OUTPUT);
+    DIO_init(u8_a_pinNumber,u8_a_portNumber,OUTPUT);
     return SUCCESS;
 }
 
 /************************************************************************/
 /*Description: Sets a motor pin as HIGH                                 */
-/*@param mask			=>	mask for the pins							*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask mask for the pins                                    */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_on(uint8_t mask, uint8_t portNumber)
+err_state MOTOR_on(uint8_t u8_a_mask, uint8_t u8_a_portNumber)
 {
-    DIO_array_write(mask,portNumber,HIGH);
+    DIO_array_write(u8_a_mask,u8_a_portNumber,HIGH);
     return SUCCESS;
 }
 
 /************************************************************************/
 /*Description: Sets a motor pin as LOW                                  */
-/*@param mask			=>	mask for the pins 							*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask u8_a_mask for the pins                               */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_off(uint8_t mask, uint8_t portNumber)
+err_state MOTOR_off(uint8_t u8_a_mask, uint8_t u8_a_portNumber)
 {
-    DIO_array_write(mask,portNumber,LOW);
+    DIO_array_write(u8_a_mask,u8_a_portNumber,LOW);
     return SUCCESS;
 }
 
 /*****************************************************************************************************************************************************************************/
 /*Description: Controls the motor speed depending on the given percentage of the maximum speed by setting the duty cycle to the required max_speed percentage (Uses timer 0) */
-/*@param mask				=>	mask for the pins 		                                                                                                                  	 */
-/*@param ledPort			=>  port number                                                                                                                                  */
-/*@param speedPercentage	=>	duty cycle 		                                                                                                                  		     */
-/*@param resolution_in_ms	=>  T-Period                                                                                                                                     */
+/*@param u8_a_mask u8_a_mask for the pins                                                                                                                                    */
+/*@param u8_a_portNumber port number                                                                                                                                         */
+/*@param f_a_speedPercentage duty cycle                                                                                                                                      */
+/*@param f_a_tPeriod T-Period                                                                                                                                                */
 /*****************************************************************************************************************************************************************************/
-err_state MOTOR_control(uint8_t mask, uint8_t portNumber,float speedPercentage,float resolution_in_ms)
+err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_speedPercentage,float f_a_tPeriod)
 {
     double on_TIME,off_TIME = 0;
     
     //error handling : the required output deviates depending on how close to the min and max values of the motor speed and also depending on the T-Period
-    if(speedPercentage>50)//checks if the duty cycle is higher than 50%
+    if(f_a_speedPercentage>50)//checks if the duty cycle is higher than 50%
     {
-        speedPercentage = speedPercentage+((speedPercentage-50)*err);//adds 4.2% of the difference between the required duty cycle and 50% duty cycle
+        f_a_speedPercentage = f_a_speedPercentage+((f_a_speedPercentage-50)*d_g_err);//adds 4.2% of the difference between the required duty cycle and 50% duty cycle
     }
     
     else//the required duty cycle is 50% or lower
     {
-        speedPercentage = speedPercentage-((50-speedPercentage)*err);//subtracts 4.2% of the difference between the required duty cycle and 50% duty cycle
+        f_a_speedPercentage = f_a_speedPercentage-((50-f_a_speedPercentage)*d_g_err);//subtracts 4.2% of the difference between the required duty cycle and 50% duty cycle
     }
     
-    on_TIME = (double) (speedPercentage/100.0)*resolution_in_ms;//sets the duty cycle 
-    off_TIME = resolution_in_ms - on_TIME;//gets the off time
+    on_TIME = (double) (f_a_speedPercentage/100.0)*f_a_tPeriod;//sets the duty cycle 
+    off_TIME = f_a_tPeriod - on_TIME;//gets the off time
           
-    MOTOR_on(mask,portNumber);//motors on
-    timer0_delay(on_TIME);//busy loop until the on time is met
+    MOTOR_on(u8_a_mask,u8_a_portNumber);//motors on
+    TIMER0_delay(on_TIME);//busy loop until the on time is met
         
-    MOTOR_off(mask,portNumber);//motors off	
-    timer0_delay(off_TIME);////busy loop until the off time is met
+    MOTOR_off(u8_a_mask,u8_a_portNumber);//motors off	
+    TIMER0_delay(off_TIME);////busy loop until the off time is met
         
     return SUCCESS;
 }

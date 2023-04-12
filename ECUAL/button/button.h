@@ -11,18 +11,18 @@
 
 /************************************************************************/
 /*Description: Initialize a button as an Input                          */
-/*@param pinNumber		=>	pin number									*/
-/*@param portNumber		=>  port number									*/
+/*@param u8_a_pinNumber  pin number                                     */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state BUTTON_init(uint8_t pinNumber, uint8_t portNumber);
+err_state BUTTON_init(uint8_t u8_a_pinNumber, uint8_t u8_a_portNumber);
 
 /************************************************************************/
 /*Description: Read a button current state                              */
-/*@param pinNumber		=>	pin number									*/
-/*@param portNumber		=>  port number								    */
-/*@param *value			=>  refrence to store the read value in			*/
+/*@param u8_a_pinNumber     pin number                                  */
+/*@param u8_a_portNumber    port number                                 */
+/*@param *en_a_value             refrence to store the read value in    */
 /************************************************************************/
-err_state BUTTON_read(uint8_t pinNumber, uint8_t portNumber, uint8_t *value);
+err_state BUTTON_read(uint8_t u8_a_pinNumber, uint8_t u8_a_portNumber, pin_state *en_a_value);
 
 
 

@@ -19,42 +19,42 @@
 #define PORT_D 'D'
 
 /*******************************************************************************************/
-/*Descripton: Initialize a pin as output or input depending on the direction passed        */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param direction      =>  pin direction										    	   */
+/*Description: Initialize a pin as output or input depending on the direction passed       */
+/*@param u8_l_pinNumber      pin number                                                    */
+/*@param u8_l_portNumber     port number                                                   */
+/*@param en_l_direction      direction                                                     */
 /*******************************************************************************************/
-err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction);   //initialize dio direction
+err_state DIO_init(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_dir en_l_direction);
 
 /*******************************************************************************************/
-/*Descripton: Sets a pin as HIGH or LOW depending on the state passed                      */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param value	        =>  pin desired state											   */
+/*Description: Sets a pin as HIGH or LOW depending on the state passed                     */
+/*@param u8_l_pinNumber      pin number                                                    */
+/*@param u8_l_portNumber     port number                                                   */
+/*@param en_l_value          pin desired state                                             */
 /*******************************************************************************************/
-err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value);  //write data to dio 
+err_state DIO_write(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_state en_l_value);
 
 /*******************************************************************************************/
-/*Descripton: Toggles a pin state									                       */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
+/*Description: Toggles a pin state                                                         */
+/*@param u8_l_pinNumber        pin number                                                  */
+/*@param u8_l_portNumber       port number                                                 */
 /*******************************************************************************************/
-err_state DIO_toggle(uint8_t pinNumber, uint8_t portNumber); //toggle dio 
+err_state DIO_toggle(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber);	
 
 /*******************************************************************************************/
-/*Descripton: Reads a pin state									                           */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param *value			=>  refrence to store the read value in							   */
+/*Description: Reads a pin state                                                           */
+/*@param u8_l_pinNumber          pin number                                                */
+/*@param u8_l_portNumber         port number                                               */
+/*@param *en_l_value             refrence to store the read state in                       */
 /*******************************************************************************************/
-err_state DIO_read(uint8_t pinNumber, uint8_t portNumber, uint8_t *value);   //read dio 
+err_state DIO_read(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_state *en_l_value);
 
 /*******************************************************************************************/
-/*Descripton: Sets an array of pins as HIGH or LOW depending on the state passed           */
-/*@param mask			=>	mask														   */
-/*@param portNumber		=>  port number													   */
-/*@param value	        =>  mask desired state											   */
+/*Description: Sets an array of pins as HIGH or LOW depending on the state passed          */
+/*@param u8_l_mask              pins mask                                                  */
+/*@param u8_l_portNumber        port number                                                */
+/*@param en_l_value	            mask desired state                                         */
 /*******************************************************************************************/
-err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value);
+err_state DIO_array_write(uint8_t u8_l_mask, uint8_t u8_l_portNumber, pin_state en_l_value);
 
 #endif /* DIO_H_ */

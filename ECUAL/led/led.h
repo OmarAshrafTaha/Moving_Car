@@ -13,65 +13,65 @@
 
 /************************************************************************/
 /*Description: Initialize a led as an output                            */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_ledPin pin number                                         */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_init(uint8_t ledPin, uint8_t ledPort);
+err_state LED_init(uint8_t u8_a_ledPin, uint8_t u8_a_ledPort);
 
 /************************************************************************/
 /*Description: Sets a led state as HIGH                                 */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_ledPin pin number                                         */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_on(uint8_t ledPin, uint8_t ledPort);
+err_state LED_on(uint8_t u8_a_ledPin, uint8_t u8_a_ledPort);
 
 /************************************************************************/
 /*Description: Sets a led state as LOW                                  */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_ledPin pin number                                         */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_off(uint8_t ledPin, uint8_t ledPort);
+err_state LED_off(uint8_t u8_a_ledPin, uint8_t u8_a_ledPort);
 
 /************************************************************************/
 /*Description: Toggles a led state                                      */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_ledPin pin number                                         */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_toggle(uint8_t ledPin, uint8_t ledPort);
+err_state LED_toggle(uint8_t u8_a_ledPin, uint8_t u8_a_ledPort);
 
 /************************************************************************/
 /*Description: Blink a led depending on the on and off times            */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
-/*@param on_time		=>  led on time									*/
-/*@param off_time		=>	led off time								*/
+/*@param u8_a_ledPin pin number                                         */
+/*@param u8_a_ledPort port number                                       */
+/*@param f_a_onTime led on time                                         */
+/*@param f_a_offTime led off time                                       */
 /************************************************************************/
-err_state LED_blink(uint8_t ledPin, uint8_t ledPort,float on_time, float off_time);
+err_state LED_blink(uint8_t u8_a_ledPin, uint8_t u8_a_ledPort,float f_a_onTime, float f_a_offTime);
 
 
 
 /******************************************************************************/
 /*Description: Blink an array of leds depending on the on and off times       */
-/*@param mask			=>	mask for the array of leds						  */
-/*@param ledPort		=>  port number										  */
-/*@param on_time		=>  led on time										  */
-/*@param off_time		=>	led off time									  */
+/*@param u8_a_mask mask for the array of leds                                 */
+/*@param u8_a_ledPort port number                                             */
+/*@param f_a_onTime led on time                                               */
+/*@param f_a_offTime led off time                                             */
 /******************************************************************************/
-err_state LED_array_blink(uint8_t mask, uint8_t ledPort,float on_time, float off_time);
+err_state LED_array_blink(uint8_t u8_a_mask, uint8_t u8_a_ledPort,float f_a_onTime, float f_a_offTime);
 
 /************************************************************************/
 /*Description: Sets the state of an array of leds to HIGH               */
-/*@param mask			=>	mask for the array of leds 					*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask mask for the array of leds                           */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_array_on(uint8_t mask, uint8_t ledPort);
+err_state LED_array_on(uint8_t u8_a_mask, uint8_t u8_a_ledPort);
 
 /************************************************************************/
 /*Description: Sets the state of an array of leds to LOW                */
-/*@param mask			=>	mask for the array of leds 					*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask mask for the array of leds                           */
+/*@param u8_a_ledPort port number                                       */
 /************************************************************************/
-err_state LED_array_off(uint8_t mask, uint8_t ledPort);
+err_state LED_array_off(uint8_t u8_a_mask, uint8_t u8_a_ledPort);
 
 
 

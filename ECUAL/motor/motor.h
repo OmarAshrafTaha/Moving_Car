@@ -13,33 +13,33 @@
 
 /************************************************************************/
 /*Description: Initialize a motor pin as an output                      */
-/*@param ledPin			=>	pin number									*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_pinNumber pin number                                      */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_init(uint8_t pinNumber, uint8_t portNumber);
+err_state MOTOR_init(uint8_t u8_a_pinNumber, uint8_t u8_a_portNumber);
 
 /************************************************************************/
 /*Description: Sets a motor pin as HIGH                                 */
-/*@param mask			=>	mask for the pins							*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask mask for the pins                                    */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_on(uint8_t mask, uint8_t portNumber);
+err_state MOTOR_on(uint8_t u8_a_mask, uint8_t u8_a_portNumber);
 
 /************************************************************************/
 /*Description: Sets a motor pin as LOW                                  */
-/*@param mask			=>	mask for the pins 							*/
-/*@param ledPort		=>  port number									*/
+/*@param u8_a_mask u8_a_mask for the pins                               */
+/*@param u8_a_portNumber port number                                    */
 /************************************************************************/
-err_state MOTOR_off(uint8_t mask, uint8_t portNumber);
+err_state MOTOR_off(uint8_t u8_a_mask, uint8_t u8_a_portNumber);
 
 /*****************************************************************************************************************************************************************************/
 /*Description: Controls the motor speed depending on the given percentage of the maximum speed by setting the duty cycle to the required max_speed percentage (Uses timer 0) */
-/*@param mask				=>	mask for the pins 		                                                                                                                  	 */
-/*@param ledPort			=>  port number                                                                                                                                  */
-/*@param speedPercentage	=>	duty cycle 		                                                                                                                  		     */
-/*@param resolution_in_ms	=>  T-Period                                                                                                                                     */
+/*@param u8_a_mask u8_a_mask for the pins                                                                                                                                    */
+/*@param u8_a_portNumber port number                                                                                                                                         */
+/*@param f_a_speedPercentage duty cycle                                                                                                                                      */
+/*@param f_a_tPeriod T-Period                                                                                                                                                */
 /*****************************************************************************************************************************************************************************/
-err_state MOTOR_control(uint8_t mask, uint8_t portNumber,float speedPercentage,float resolution_in_ms);
+err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_speedPercentage,float f_a_tPeriod);
 
 
 

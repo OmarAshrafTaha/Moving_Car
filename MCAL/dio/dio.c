@@ -8,22 +8,22 @@
 
 /*******************************************************************************************/
 /*Description: Initialize a pin as output or input depending on the direction passed       */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param direction      =>  pin direction										    	   */
+/*@param u8_l_pinNumber     pin number                                                     */
+/*@param u8_l_portNumber    port number                                                    */
+/*@param en_l_direction     direction                                                      */
 /*******************************************************************************************/
-err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction)  //initialize dio direction
+err_state DIO_init(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_dir en_l_direction)  
 {
-    switch(portNumber)
+    switch(u8_l_portNumber)
     {
         case PORT_A:
-            if(direction == INPUT)
+            if(en_l_direction == INPUT)
             {
-                Clear_Bit(pinNumber,DDRA);
+                Clear_Bit(u8_l_pinNumber,DDRA);
             }
-            else if(direction == OUTPUT)
+            else if(en_l_direction == OUTPUT)
             {
-                Set_Bit(pinNumber,DDRA);
+                Set_Bit(u8_l_pinNumber,DDRA);
             }
             else
             {
@@ -33,13 +33,13 @@ err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction)  //
             break;
             
         case PORT_B:
-            if(direction == INPUT)
+            if(en_l_direction == INPUT)
             {
-                Clear_Bit(pinNumber,DDRB);
+                Clear_Bit(u8_l_pinNumber,DDRB);
             }
-            else if(direction == OUTPUT)
+            else if(en_l_direction == OUTPUT)
             {
-                Set_Bit(pinNumber,DDRB);			
+                Set_Bit(u8_l_pinNumber,DDRB);			
             }
             else
             {
@@ -49,13 +49,13 @@ err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction)  //
             break;
             
         case PORT_C:
-            if(direction == INPUT)
+            if(en_l_direction == INPUT)
             {
-                Clear_Bit(pinNumber,DDRC);				
+                Clear_Bit(u8_l_pinNumber,DDRC);				
             }
-            else if(direction == OUTPUT)
+            else if(en_l_direction == OUTPUT)
             {
-                Set_Bit(pinNumber,DDRC);
+                Set_Bit(u8_l_pinNumber,DDRC);
             }
             else
             {
@@ -65,13 +65,13 @@ err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction)  //
             break;
             
         case PORT_D:
-            if(direction == INPUT)
+            if(en_l_direction == INPUT)
             {
-                Clear_Bit(pinNumber,DDRD);			
+                Clear_Bit(u8_l_pinNumber,DDRD);			
             }
-            else if(direction == OUTPUT)
+            else if(en_l_direction == OUTPUT)
             {
-                Set_Bit(pinNumber,DDRD);
+                Set_Bit(u8_l_pinNumber,DDRD);
             }
             else
             {
@@ -89,22 +89,22 @@ err_state DIO_init(uint8_t pinNumber, uint8_t portNumber, pin_dir direction)  //
 
 /*******************************************************************************************/
 /*Description: Sets a pin as HIGH or LOW depending on the state passed                     */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param value	        =>  pin desired state											   */
+/*@param u8_l_pinNumber      pin number                                                    */
+/*@param u8_l_portNumber     port number                                                   */
+/*@param en_l_value          pin desired state                                             */
 /*******************************************************************************************/
-err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value)   //write data to dio
+err_state DIO_write(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_state en_l_value)   
 {	
-    switch(portNumber)
+    switch(u8_l_portNumber)
     {
         case PORT_A:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_Bit(pinNumber,PORTA);
+                Clear_Bit(u8_l_pinNumber,PORTA);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_Bit(pinNumber,PORTA);
+                Set_Bit(u8_l_pinNumber,PORTA);
             }
             else
             {
@@ -114,13 +114,13 @@ err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value)   //
             break;
         
         case PORT_B:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_Bit(pinNumber,PORTB);
+                Clear_Bit(u8_l_pinNumber,PORTB);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_Bit(pinNumber,PORTB);
+                Set_Bit(u8_l_pinNumber,PORTB);
             }
             else
             {
@@ -130,13 +130,13 @@ err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value)   //
             break;
         
         case PORT_C:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_Bit(pinNumber,PORTC);
+                Clear_Bit(u8_l_pinNumber,PORTC);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_Bit(pinNumber,PORTC);
+                Set_Bit(u8_l_pinNumber,PORTC);
             }
             else
             {
@@ -146,13 +146,13 @@ err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value)   //
             break;
         
         case PORT_D:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_Bit(pinNumber,PORTD);
+                Clear_Bit(u8_l_pinNumber,PORTD);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_Bit(pinNumber,PORTD);
+                Set_Bit(u8_l_pinNumber,PORTD);
             }
             else
             {
@@ -169,22 +169,22 @@ err_state DIO_write(uint8_t pinNumber, uint8_t portNumber, pin_state value)   //
 
 /*******************************************************************************************/
 /*Description: Sets an array of pins as HIGH or LOW depending on the state passed          */
-/*@param mask			=>	mask														   */
-/*@param portNumber		=>  port number													   */
-/*@param value	        =>  mask desired state											   */
+/*@param u8_l_mask              pins mask                                                  */
+/*@param u8_l_portNumber        port number                                                */
+/*@param en_l_value	            mask desired state                                         */
 /*******************************************************************************************/
-err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value)   //write data to dio
+err_state DIO_array_write(uint8_t u8_l_mask, uint8_t u8_l_portNumber, pin_state en_l_value)   
 {
-    switch(portNumber)
+    switch(u8_l_portNumber)
     {
         case PORT_A:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_mask(mask,PORTA);
+                Clear_mask(u8_l_mask,PORTA);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_mask(mask,PORTA);
+                Set_mask(u8_l_mask,PORTA);
             }
             else
             {
@@ -194,13 +194,13 @@ err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value)   /
             break;
         
         case PORT_B:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_mask(mask,PORTB);
+                Clear_mask(u8_l_mask,PORTB);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_mask(mask,PORTB);
+                Set_mask(u8_l_mask,PORTB);
             }
             else
             {
@@ -210,13 +210,13 @@ err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value)   /
             break;
         
         case PORT_C:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_mask(mask,PORTC);
+                Clear_mask(u8_l_mask,PORTC);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_mask(mask,PORTC);
+                Set_mask(u8_l_mask,PORTC);
             }
             else
             {
@@ -226,13 +226,13 @@ err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value)   /
             break;
         
         case PORT_D:
-            if(value == LOW)
+            if(en_l_value == LOW)
             {
-                Clear_mask(mask,PORTD);
+                Clear_mask(u8_l_mask,PORTD);
             }
-            else if(value == HIGH)
+            else if(en_l_value == HIGH)
             {
-                Set_mask(mask,PORTD);
+                Set_mask(u8_l_mask,PORTD);
             }
             else
             {
@@ -248,28 +248,28 @@ err_state DIO_array_write(uint8_t mask, uint8_t portNumber, pin_state value)   /
 }
 
 /*******************************************************************************************/
-/*Description: Toggles a pin state									                       */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
+/*Description: Toggles a pin state                                                         */
+/*@param u8_l_pinNumber        pin number                                                  */
+/*@param u8_l_portNumber       port number                                                 */
 /*******************************************************************************************/
-err_state DIO_toggle(uint8_t pinNumber, uint8_t portNumber)					 //toggle dio
+err_state DIO_toggle(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber)					
 {
-    switch(portNumber)
+    switch(u8_l_portNumber)
     {
         case PORT_A:
-            Toggle_Bit(pinNumber,PORTA);
+            Toggle_Bit(u8_l_pinNumber,PORTA);
             break;
 
         case PORT_B:
-            Toggle_Bit(pinNumber,PORTB);
+            Toggle_Bit(u8_l_pinNumber,PORTB);
             break;
             
         case PORT_C:
-            Toggle_Bit(pinNumber,PORTC);
+            Toggle_Bit(u8_l_pinNumber,PORTC);
             break;
             
         case PORT_D:
-            Toggle_Bit(pinNumber,PORTD);
+            Toggle_Bit(u8_l_pinNumber,PORTD);
             break;
         default:
             //Error handling
@@ -279,29 +279,29 @@ err_state DIO_toggle(uint8_t pinNumber, uint8_t portNumber)					 //toggle dio
 }
 
 /*******************************************************************************************/
-/*Description: Reads a pin state									                       */
-/*@param pinNumber		=>	pin number													   */
-/*@param portNumber		=>  port number													   */
-/*@param *value			=>  refrence to store the read value in							   */
+/*Description: Reads a pin state                                                           */
+/*@param u8_l_pinNumber          pin number                                                */
+/*@param u8_l_portNumber         port number                                               */
+/*@param *en_l_value             refrence to store the read state in                       */
 /*******************************************************************************************/
-err_state DIO_read(uint8_t pinNumber, uint8_t portNumber, pin_state *value)   //read dio
+err_state DIO_read(uint8_t u8_l_pinNumber, uint8_t u8_l_portNumber, pin_state *en_l_value)   
 {
-    switch(portNumber)
+    switch(u8_l_portNumber)
     {
         case PORT_A:
-            *value = Read_Bit(pinNumber,PINA);
+            *en_l_value = Read_Bit(u8_l_pinNumber,PINA);
             break;
 
         case PORT_B:
-            *value = Read_Bit(pinNumber,PINB);
+            *en_l_value = Read_Bit(u8_l_pinNumber,PINB);
             break;
         
         case PORT_C:
-            *value = Read_Bit(pinNumber,PINC);
+            *en_l_value = Read_Bit(u8_l_pinNumber,PINC);
             break;
         
         case PORT_D:
-            *value = Read_Bit(pinNumber,PIND);			
+            *en_l_value = Read_Bit(u8_l_pinNumber,PIND);			
             break;
         
         default:
