@@ -16,7 +16,7 @@
 #include "../../MCAL/timers/timers.h"
 
 //PWM T-Period is 100 milliseconds
-#define f_g_tPeriod 100  
+ 
 
 //Motor direction and enable pins
 #define u8_g_L1 0

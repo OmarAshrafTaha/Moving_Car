@@ -10,6 +10,7 @@
 #define MOTOR_H_
 #include "../../MCAL/dio/dio.h"
 #include "../../MCAL/timers/timers.h"
+#define f_g_tPeriod 100 
 
 /************************************************************************/
 /*Description: Initialize a motor pin as an output                      */
@@ -39,7 +40,7 @@ err_state MOTOR_off(uint8_t u8_a_mask, uint8_t u8_a_portNumber);
 /*@param f_a_speedPercentage duty cycle                                                                                                                                      */
 /*@param f_a_tPeriod T-Period                                                                                                                                                */
 /*****************************************************************************************************************************************************************************/
-err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_speedPercentage,float f_a_tPeriod);
+err_state MOTOR_control(uint8_t u8_a_mask, uint8_t u8_a_portNumber,float f_a_speedPercentage);
 
 
 

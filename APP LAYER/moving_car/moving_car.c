@@ -68,7 +68,7 @@ err_state move_car(car_dir en_a_direction)
             TIMER2_perscalerMode(PRESCALER_MODE);//sets the prescaler and u8_gs_starts timer2
             while(u16_gs_currentCount<u16_l_ovf)//keep looping until reaching the number of overflows required
             {
-                MOTOR_control(ENB_PINS_MASK,PORT_A,50,f_g_tPeriod);//Moves the car with 50% Duty Cycle of T-Period = f_g_tPeriod 
+                MOTOR_control(ENB_PINS_MASK,PORT_A,50);//Moves the car with 50% Duty Cycle of T-Period = f_g_tPeriod 
             }
             TIMER2_perscalerMode(TIMER_OFF_);//close the timer
             TCNT2 = 0;//set the timer counter register value to 0
@@ -89,7 +89,7 @@ err_state move_car(car_dir en_a_direction)
             TIMER2_perscalerMode(PRESCALER_MODE);//sets the prescaler and u8_gs_starts timer2
             while(u16_gs_currentCount<u16_l_ovf)//keep looping until reaching the number of overflows required
             {
-                MOTOR_control(ENB_PINS_MASK,PORT_A,30,f_g_tPeriod);//Moves the car with 30% Duty Cycle of T-Period = f_g_tPeriod 
+                MOTOR_control(ENB_PINS_MASK,PORT_A,30);//Moves the car with 30% Duty Cycle of T-Period = f_g_tPeriod 
             }
             TIMER2_perscalerMode(TIMER_OFF_);//close the timer
             TCNT2 = 0;//set the timer counter register value to 0
@@ -110,7 +110,7 @@ err_state move_car(car_dir en_a_direction)
             TIMER2_perscalerMode(PRESCALER_MODE);//sets the prescaler and u8_gs_starts timer2
             while(u16_gs_currentCount<u16_l_ovf)//keep looping until reaching the number of overflows required
             {
-                MOTOR_control(ENB_PINS_MASK,PORT_A,20,f_g_tPeriod);//Moves the car with 30% Duty Cycle of T-Period = f_g_tPeriod
+                MOTOR_control(ENB_PINS_MASK,PORT_A,20);//Moves the car with 30% Duty Cycle of T-Period = f_g_tPeriod
             }
             TIMER2_perscalerMode(TIMER_OFF_);//close the timer
             TCNT2 = 0;//set the timer counter register value to 0
