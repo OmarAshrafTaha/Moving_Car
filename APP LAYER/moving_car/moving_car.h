@@ -57,4 +57,10 @@ err_state move_car(car_dir en_a_direction);
 /*************************************************************************************************************************************************************/
 err_state car_cycle(void);
 
+void start_Car(void);
+
+void stop_Car(void);
+
+void get_current_overflow(void);
+
 #endif /* MOVING_CAR_H_ */

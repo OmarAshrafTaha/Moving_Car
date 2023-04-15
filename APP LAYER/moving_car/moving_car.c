@@ -8,7 +8,7 @@
 
 static unsigned int u16_gs_currentCount=0; //counter which increments everytime the ISR is called
 static uint8_t u8_gs_start = 0;//u8_gs_start flag
-static uint8_t u8_gs_stop  = 0;//u8_gs_stop flag
+
 
 /*************************************************************************************************************************************************************/
 /*Description: Setting timer 0 and timer 2 normal modes, enabling global interrupt and timer 2 interrupt and also initializing motor,leds and button pins    */
@@ -44,6 +44,11 @@ err_state car_init(void)
     MOTOR_init(u8_g_R1,PORT_A);
     MOTOR_init(u8_g_R2,PORT_A);
     
+	//Set Callbacks
+	set_EXT_INT_0_callBack(start_Car);
+	set_EXT_INT_1_callBack(stop_Car);
+	set_TIMER2_OVF_callBack(get_current_overflow);
+	
     //Set motors enable pins to off
     MOTOR_off(ENB_PINS_MASK,PORT_A);
     return SUCCESS;	
@@ -134,7 +139,7 @@ err_state car_cycle(void)
     car_init();
     while(u8_gs_start!=1);
     TIMER0_delay(1000);//wait 1 sec then start moving
-    while(u8_gs_stop!=1)
+    while(1)
     {
         move_car(FORWARD_LONG_SIDE);
         move_car(ROTATE_RIGHT);
@@ -144,31 +149,30 @@ err_state car_cycle(void)
 return FAIL;
 }
 
-//ISR for timer 2 overflow which increments the u16_gs_currentCount
-ISR(TIMER2_OVF)
+
+//Callbacks for timer 2 overflow which increments the u16_gs_currentCount
+void get_current_overflow(void)
 {
-    u16_gs_currentCount++;
+	u16_gs_currentCount++;
 }
 
-//ISR for external interrupt 0 on PD2 which sets the u8_gs_start flag
-ISR(EXT_INT_0)
+
+//Callback for external interrupt 0 on PD2 which sets the start flag
+void start_Car(void)
 {
     u8_gs_start = 1;
-    u8_gs_stop = 0;
 }
 
-//ISR for external interrupt 1 on PD3 sets the emergency u8_gs_stop flag and keep motors off until u8_gs_start button is pushed again 
-ISR(EXT_INT_1)
+//Callback for external interrupt 1 on PD3 sets the emergency stop flag and keep motors off until u8_gs_start button is pushed again 
+void stop_Car(void)
 {
-    SREG |= (1<<7);//enabling the global interrupt to check if u8_gs_start is pushed again
-    u8_gs_stop = 1;
-    u8_gs_start = 0;
-    //Set motors enable pins to off	
-    MOTOR_off(ENB_PINS_MASK,PORT_A);
-    LED_array_off(0xFF,PORT_B);//turn off all leds
-
-    while(u8_gs_start!=1)//busy loop until u8_gs_start is pressed again
-    {
-        LED_blink(2,PORT_B,500,500);//blink the u8_gs_stop led
-    }
+	u8_gs_start = 0;
+	//Set motors enable pins to off
+	MOTOR_off(ENB_PINS_MASK,PORT_A);
+	LED_array_off(0xFF,PORT_B);//turn off all leds
+	while(u8_gs_start!=1)//busy loop until u8_gs_start is pressed again
+	{
+		LED_blink(2,PORT_B,500,500);//blink the u8_gs_stop led
+	}
 }
+

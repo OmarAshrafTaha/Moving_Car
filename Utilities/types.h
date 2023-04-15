@@ -8,6 +8,7 @@
 
 #ifndef TYPES_H_
 #define TYPES_H_
+#define nullPtr ((void*)0)
 
 typedef unsigned char uint8_t;
 typedef enum err_state

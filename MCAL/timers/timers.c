@@ -8,6 +8,8 @@
 static unsigned int u16_gs_t0_initial_value= 0;
 static unsigned int u16_gs_t2_initial_value= 0;
 
+void static (*TIMER2_OVF_callBack) (void) = nullPtr;
+
 /********************************************************************************************/
 /*Description: Set timer 0 control register to normal mode by clearing bits COM00 & COM01.  */
 /*@param void                                                                               */	
@@ -82,9 +84,9 @@ err_state TIMER0_prescalerMode(unsigned int u16_a_prescaler)
             break;
             
         case 11: //Prescaling set to external clock source on T0 pin. clock on falling edge
-            Set_Bit(0,TCCR0);
+            Clear_Bit(0,TCCR0);
             Set_Bit(1,TCCR0);
-            Clear_Bit(2,TCCR0);
+            Set_Bit(2,TCCR0);
             break;								
 
         case 12: //Prescaling set to external clock source on T0 pin. clock on rising edge
@@ -293,4 +295,14 @@ unsigned int TIMER2_getInitialValue(float f_a_delayInMillis)
     u16_l_numberOfOVF = ceil( f_a_delayInMillis / t2_max_delay );
     u16_gs_t2_initial_value = 256.0 - ceil( (f_a_delayInMillis/t_tick) / u16_l_numberOfOVF );
     return u16_l_numberOfOVF;
+}
+
+void set_TIMER2_OVF_callBack(void (*callback) (void))
+{
+	TIMER2_OVF_callBack = callback;
+}
+
+ISR(TIMER2_OVF)
+{
+	TIMER2_OVF_callBack();
 }

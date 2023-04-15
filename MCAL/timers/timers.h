@@ -9,7 +9,9 @@
 #ifndef TIMERS_H_
 #define TIMERS_H_
 #include "../../Utilities/registers.h"
+#include "../../Utilities/types.h"
 #include "../../Utilities/bit_manipulation.h"
+#include "../../MCAL/interrupts/interrupts.h"
 #include <math.h>
 
 #define  TIMER_OFF_    0
@@ -65,7 +67,7 @@ err_state TIMER0_initialValue(uint8_t value);
 /*                                       => PRESCALE_EXT_RISING_        */
 /*@param prescaler prescaler mode                                       */	
 /************************************************************************/
-err_state TIMER0_prescalerMode(unsigned int prescaler);
+err_state TIMER0_prescalerMode(unsigned int u16_a_prescaler);
 
 /************************************************************************/
 /*Description: Stays in a busy loop until the delay is met              */
@@ -111,7 +113,7 @@ err_state TIMER2_initialValue(uint8_t value);
 /*                                       => PRESCALE_EXT_RISING_        */
 /*@param prescaler prescaler mode                                       */	
 /************************************************************************/
-err_state TIMER2_perscalerMode(unsigned int prescaler);
+err_state TIMER2_perscalerMode(unsigned int u16_a_prescaler);
 
 /************************************************************************/
 /*Description: Stays in a busy loop until the delay is met              */
@@ -124,5 +126,8 @@ err_state TIMER2_delay(float f_a_delayInMillis);
 /*@param f_a_delayInMillis delay time needed in ms                                                                                                                      */
 /************************************************************************************************************************************************************************/
 unsigned int TIMER2_getInitialValue(float f_a_delayInMillis);
+
+
+void set_TIMER2_OVF_callBack(void (*callback)(void));
 
 #endif /* TIMERS_H_ */
